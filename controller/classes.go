@@ -3,13 +3,13 @@ package controller
 import (
 	"fmt"
 	"net/http"
+	"school.com/packages/service/entity"
+	"school.com/packages/service/mapper"
+	model2 "school.com/packages/service/model"
 
 	"github.com/labstack/echo/v4"
 
 	"school.com/packages/config"
-	"school.com/packages/entity"
-	"school.com/packages/mapper"
-	"school.com/packages/model"
 )
 
 // Classrooms get classrooms info(grade)
@@ -18,11 +18,11 @@ func Classrooms(e echo.Context) error {
 	return e.JSON(http.StatusOK, classes)
 }
 
-func GetClassrooms(e echo.Context) ([]model.ClassroomModel, error) {
+func GetClassrooms(e echo.Context) ([]model2.ClassroomModel, error) {
 
 	db := config.NewDB()
 
-	filter := model.PaginationFilter{}
+	filter := model2.PaginationFilter{}
 
 	//create classes variable
 	var classes []entity.Classroom

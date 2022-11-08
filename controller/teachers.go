@@ -5,9 +5,9 @@ import (
 	"github.com/labstack/echo/v4"
 	"net/http"
 	"school.com/packages/config"
-	"school.com/packages/entity"
-	"school.com/packages/mapper"
-	"school.com/packages/model"
+	"school.com/packages/service/entity"
+	"school.com/packages/service/mapper"
+	model2 "school.com/packages/service/model"
 )
 
 // Teachers find the teachers in class x
@@ -16,13 +16,13 @@ func Teachers(e echo.Context) error {
 	return e.JSON(http.StatusOK, teachersData)
 }
 
-func GetTeachers(e echo.Context) ([]model.ClassroomTeacherModel, error) {
+func GetTeachers(e echo.Context) ([]model2.ClassroomTeacherModel, error) {
 
 	//create db new cnx
 	db := config.NewDB()
 
 	// creat pagination var
-	filter := model.PaginationFilter{}
+	filter := model2.PaginationFilter{}
 
 	//create variables
 	var classTeacher []entity.ClassroomTeacher

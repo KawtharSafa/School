@@ -5,9 +5,9 @@ import (
 	"github.com/labstack/echo/v4"
 	"net/http"
 	"school.com/packages/config"
-	"school.com/packages/entity"
-	"school.com/packages/mapper"
-	"school.com/packages/model"
+	"school.com/packages/service/entity"
+	"school.com/packages/service/mapper"
+	"school.com/packages/service/model"
 )
 
 // Students find the students in class x
@@ -102,46 +102,3 @@ func GetStudents(e echo.Context) ([]model.StudentModel, error) {
 
 	return mapper.MapToStudentArrayModel(students), nil
 }
-
-//Order("student.score desc").
-//Limit(4)
-
-//Joins("join classroom ON student.classroom_id = classroom.id").
-//Group("student.id, classroom.grade").
-//Having("student.score = (?)", db.
-//	Table("student").
-//	Joins("join classroom ON student.classroom_id = classroom.id").
-//	Select("MAX(score)").
-//    Where("")
-//	).
-//Find(&students)
-
-//subQuery1 := db.Model(&students).Select("first_name, score")
-//subQuery2 := db.Model(&classroom).Select("MAX(grade)")
-//query.Table("(?) as u, (?) as p", subQuery1, subQuery2).Find(&students)
-
-//Table("(?) as topStd", db.Model(students).
-//	Select("MAX(score)")).
-//Find(students)
-
-//		Select("first_name, score, grade").
-//		Joins(
-//			Select(*, ROW_NUMBER() OVER (PARTITION("classroom.grade"). ORDER("student.score desc")) rn).
-//			Joins("Join classroom ON (classroom.id = student.classroom_id)")
-//).
-//	Where(rn = 1);
-
-//	//Statement.Build()
-//
-//	//subQuery := db.Select(`SELECT *, ROW_NUMBER()OVER(PARTITION BY classroom.grade ORDER BY student.score DESC as rn`).
-//	//	Joins(`JOIN classroom ON classroom.id = student.classroom_id`)
-//	//
-//	//query.
-//	//	Select("first_name, score, classroom.grade ").
-//	//	Joins("join classroom ON classroom.id = student.classroom_id").
-//	//	Having(subQuery)
-//
-//	//db.Query(`SELECT first_name, score, grade
-//	//			FROM(  SELECT *, ROW_NUMBER()OVER(PARTITION BY classroom.grade ORDER BY student.score DESC) rn
-//	//					FROM student INNER JOIN classroom ON (classroom.id = student.classroom_id))X
-//	//		   WHERE rn = 1 `)

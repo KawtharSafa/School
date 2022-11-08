@@ -5,8 +5,8 @@ import (
 	"github.com/labstack/echo/v4"
 	"net/http"
 	"school.com/packages/config"
-	"school.com/packages/entity"
-	"school.com/packages/model"
+	"school.com/packages/service/entity"
+	"school.com/packages/service/model"
 )
 
 func Count(e echo.Context) error {
