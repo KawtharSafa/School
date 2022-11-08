@@ -6,6 +6,7 @@ require (
 	github.com/labstack/echo/v4 v4.9.1
 	gorm.io/driver/postgres v1.3.8
 	gorm.io/gorm v1.23.8
+	github.com/google/wire v0.5.0
 )
 
 require (

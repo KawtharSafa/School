@@ -2,6 +2,7 @@ package entity
 
 import (
 	"fmt"
+	"school.com/packages/service/entity"
 )
 
 type Student struct {
@@ -10,7 +11,7 @@ type Student struct {
 	LastName    string
 	Score       float32
 	ClassroomId int
-	Classroom   Classroom `gorm:"foreignKey:ClassroomId"`
+	Classroom   entity.Classroom `gorm:"foreignKey:ClassroomId"`
 }
 
 func (student *Student) TableName() string {

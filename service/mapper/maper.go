@@ -1,6 +1,8 @@
 package mapper
 
 import (
+	"school.com/packages/internal/adapter/db/entity"
+	"school.com/packages/internal/domain/model"
 	entity2 "school.com/packages/service/entity"
 	model2 "school.com/packages/service/model"
 )
@@ -58,7 +60,7 @@ func MapToTeacherArrayModel(teacherEntity []entity2.Teacher) []model2.TeacherMod
 	return TeacherModel
 }
 
-func MapToStudentArrayModel(studentEntity []entity2.Student) []model2.StudentModel {
+func MapToStudentArrayModel(studentEntity []*entity.Student) []*model.Student {
 
 	var StudentModel []model2.StudentModel
 

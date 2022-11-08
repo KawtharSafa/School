@@ -1,44 +1,30 @@
-package controller
+package repository
 
 import (
 	"fmt"
-	"github.com/labstack/echo/v4"
-	"net/http"
-	"school.com/packages/config"
-	"school.com/packages/service/entity"
-	"school.com/packages/service/mapper"
-	"school.com/packages/service/model"
+	"gorm.io/gorm"
+	"school.com/packages/internal/adapter/db/entity"
+	"school.com/packages/internal/adapter/db/mapper"
+	"school.com/packages/internal/domain/model"
+	"school.com/packages/internal/domain/repository"
 )
 
-// Students find the students in class x
-func Students(e echo.Context) error {
-	studentsData, _ := GetStudents(e)
-	return e.JSON(http.StatusOK, studentsData)
+type StudentRepository struct {
+	db *gorm.DB
 }
 
-func GetStudents(e echo.Context) ([]model.StudentModel, error) {
+func ProvideStudentRepository(db *gorm.DB) repository.StudentRepository {
+	return StudentRepository{db: db}
+}
 
-	//create db new cnx
-	db := config.NewDB()
-
-	// creat pagination var
-	filter := model.PaginationFilter{}
-
-	//create variables
-	var students []entity.Student
-
-	//bind pagination filters
-	err := e.Bind(&filter)
-	if err != nil {
-		fmt.Println(err)
-	}
-
+func (s StudentRepository) FindAllStudents(filter model.PaginationFilter) ([]*model.Student, error) {
+	var students []*entity.Student
 	//get page nb
 	page := filter.Page
 	offset := (page - 1) * 5
 
 	//get students of such class
-	query := db.Preload("Classroom")
+	query := s.db.Preload("Classroom")
 
 	//joins of tables if filter is by grade
 	if filter.Classroom != "" {
@@ -99,6 +85,5 @@ func GetStudents(e echo.Context) ([]model.StudentModel, error) {
 		return nil, err
 
 	}
-
 	return mapper.MapToStudentArrayModel(students), nil
 }

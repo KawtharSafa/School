@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"github.com/labstack/echo/v4"
 	"net/http"
-	"school.com/packages/controller/repository"
+	"school.com/packages/internal/adapter/db/repository"
+
 	//"school.com/packages/service/entity"
 	"school.com/packages/service/mapper"
 	"school.com/packages/service/model"

@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"school.com/packages/config"
 	"school.com/packages/controller"
+	"school.com/packages/internal/interface/api"
+
 	// "school.com/packages/wire"
 
 	// "github.com/google/wire"
@@ -33,7 +35,7 @@ func main() {
 	// Routes
 	e.GET("/", heyAgain)
 
-	e.GET("/students", controller.Students)
+	e.GET("/students", api.Students)
 	e.GET("/teachers", controller.Teachers)
 	e.GET("/classes", controller.Classrooms)
 	e.GET("/count", controller.Count)

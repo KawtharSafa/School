@@ -4,15 +4,17 @@
 package config
 
 import (
+	"github.com/google/wire"
 	"gorm.io/gorm"
 	"school.com/packages/controller/api"
 	"school.com/packages/controller/repository"
+	repository2 "school.com/packages/internal/adapter/db/repository"
 )
 
 func WireStudentController(db *gorm.DB) api.StudentController {
 	wire.Build(
 		api.ProvideStudentController,
-		repository.ProvideStudentRepository,
+		repository2.ProvideStudentRepository,
 	)
 	return api.StudentController{}
 }
