@@ -1,25 +1,25 @@
 package mapper
 
 import (
-	entity2 "school.com/packages/service/entity"
-	model2 "school.com/packages/service/model"
+	"school.com/packages/service/entity"
+	"school.com/packages/service/model"
 )
 
-func MapToClassTeacherArrayModel(ClassroomTeacherEntity []entity2.ClassroomTeacher) []model2.ClassroomTeacherModel {
+func MapToClassTeacherArrayModel(ClassroomTeacherEntity []*entity.ClassroomTeacher) []*model.ClassroomTeacher {
 
-	var ClassroomTeacherModel []model2.ClassroomTeacherModel
+	var ClassroomTeacherModel []*model.ClassroomTeacher
 
 	for _, classroomTeacher := range ClassroomTeacherEntity {
 
-		ClassroomTeacherModel = append(ClassroomTeacherModel, model2.ClassroomTeacherModel{
+		ClassroomTeacherModel = append(ClassroomTeacherModel, &model.ClassroomTeacher{
 
-			Teacher: model2.TeacherModel{
+			Teacher: model.Teacher{
 				FirstName:   classroomTeacher.Teacher.FirstName,
 				LastName:    classroomTeacher.Teacher.LastName,
 				Description: classroomTeacher.Teacher.Description,
 			},
 
-			Classroom: model2.ClassroomModel{
+			Classroom: model.Classroom{
 				Grade: classroomTeacher.Classroom.Grade,
 			},
 		})
@@ -28,13 +28,13 @@ func MapToClassTeacherArrayModel(ClassroomTeacherEntity []entity2.ClassroomTeach
 	return ClassroomTeacherModel
 }
 
-func MapToClassroomArrayModel(classroomEntity []entity2.Classroom) []model2.ClassroomModel {
+func MapToClassroomArrayModel(classroomEntity []*entity.Classroom) []*model.Classroom {
 
-	var ClassroomModel []model2.ClassroomModel
+	var ClassroomModel []*model.Classroom
 
 	for _, classroom := range classroomEntity {
 
-		ClassroomModel = append(ClassroomModel, model2.ClassroomModel{
+		ClassroomModel = append(ClassroomModel, &model.Classroom{
 			Grade: classroom.Grade,
 		})
 	}
@@ -42,13 +42,13 @@ func MapToClassroomArrayModel(classroomEntity []entity2.Classroom) []model2.Clas
 	return ClassroomModel
 }
 
-func MapToTeacherArrayModel(teacherEntity []entity2.Teacher) []model2.TeacherModel {
+func MapToTeacherArrayModel(teacherEntity []*entity.Teacher) []*model.Teacher {
 
-	var TeacherModel []model2.TeacherModel
+	var TeacherModel []*model.Teacher
 
 	for _, teacher := range teacherEntity {
 
-		TeacherModel = append(TeacherModel, model2.TeacherModel{
+		TeacherModel = append(TeacherModel, &model.Teacher{
 			FirstName:   teacher.FirstName,
 			LastName:    teacher.LastName,
 			Description: teacher.Description,
@@ -58,18 +58,18 @@ func MapToTeacherArrayModel(teacherEntity []entity2.Teacher) []model2.TeacherMod
 	return TeacherModel
 }
 
-func MapToStudentArrayModel(studentEntity []entity2.Student) []model2.StudentModel {
+func MapToStudentArrayModel(studentEntity []*entity.Student) []*model.Student {
 
-	var StudentModel []model2.StudentModel
+	var StudentModel []*model.Student
 
 	for _, student := range studentEntity {
 
-		StudentModel = append(StudentModel, model2.StudentModel{
+		StudentModel = append(StudentModel, &model.Student{
 			FirstName: student.FirstName,
 			LastName:  student.LastName,
 			Score:     student.Score,
 
-			Classroom: model2.ClassroomModel{
+			Classroom: model.Classroom{
 				Grade: student.Classroom.Grade,
 			},
 		})

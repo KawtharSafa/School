@@ -1,5 +1,6 @@
 package model
 
 type Classroom struct {
-	Grade string
+	Grade       string
+	ClassroomId int
 }

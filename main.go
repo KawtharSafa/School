@@ -5,6 +5,9 @@ import (
 	"net/http"
 	"school.com/packages/config"
 	"school.com/packages/controller"
+	controller2 "school.com/packages/internal/controller"
+	"school.com/packages/internal/interface"
+
 	// "school.com/packages/wire"
 
 	// "github.com/google/wire"
@@ -35,8 +38,8 @@ func main() {
 
 	e.GET("/students", controller.Students)
 	e.GET("/teachers", controller.Teachers)
-	e.GET("/classes", controller.Classrooms)
-	e.GET("/count", controller.Count)
+	e.GET("/classes", controller2.Classrooms)
+	e.GET("/count", _interface.Count)
 
 	// Start server
 	e.Logger.Fatal(e.Start(":5500"))
