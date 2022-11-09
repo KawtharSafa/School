@@ -6,43 +6,43 @@ package config
 import (
 	"github.com/google/wire"
 	"gorm.io/gorm"
-	"school.com/internal/adapter/repository"
-	"school.com/internal/interface/api"
-	"school.com/internal/usecase/query"
+	"school.com/packages/internal/adapter/db/repository"
+	"school.com/packages/internal/interface/api"
+	"school.com/packages/internal/usecase/query"
 )
 
-func WireStudentController(db *gorm.DB) api.StudentController {
+func WireStudentController(db *gorm.DB) api.Student {
 	wire.Build(
 		api.ProvideStudent,
 		query.ProvideGetAllStudents,
 		repository.ProvideStudentRepository,
 	)
-	return api.StudentController{}
+	return api.Student{}
 }
 
-func WireTeacherController(db *gorm.DB) api.TeacherController {
+func WireTeacherController(db *gorm.DB) api.Teacher {
 	wire.Build(
 		api.ProvideTeacher,
 		query.ProvideGetAllTeachers,
 		repository.ProvideTeacherRepository,
 	)
-	return api.TeacherController{}
+	return api.Teacher{}
 }
 
-func WireClassroomController(db *gorm.DB) api.ClassroomController {
+func WireClassroomController(db *gorm.DB) api.Classroom {
 	wire.Build(
 		api.ProvideClassroom,
 		query.ProvideGetAllClassrooms,
-		repository.ProvideClassroomRepository,
+		repository.ProvideClassRepository,
 	)
-	return api.ClassroomController{}
+	return api.Classroom{}
 }
 
-func WireClassTeacherController(db *gorm.DB) api.ClassTeacherController {
+func WireClassTeacherController(db *gorm.DB) api.ClassroomTeacher {
 	wire.Build(
-		api.ProvideClassTeacher,
+		api.ProvideClassroomTeacher,
 		query.ProvideGetAllClassroomTeacher,
-		repository.ProvideClassTeacherRepository,
+		repository.ProvideClassroomTeacherRepository,
 	)
-	return api.ClassTeacherController{}
+	return api.ClassroomTeacher{}
 }

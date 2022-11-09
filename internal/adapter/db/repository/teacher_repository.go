@@ -3,7 +3,6 @@ package repository
 import (
 	"fmt"
 	"gorm.io/gorm"
-	"school.com/packages/config"
 	"school.com/packages/internal/adapter/db/entity"
 	"school.com/packages/internal/adapter/db/mapper"
 	"school.com/packages/internal/domain/model"
@@ -20,9 +19,6 @@ func ProvideTeacherRepository(db *gorm.DB) repository.TeacherRepository {
 
 func (s TeacherRepository) FindAllTeachers(filter model.PaginationFilter) ([]*model.ClassroomTeacher, error) {
 
-	//create db new cnx
-	db := config.NewDB()
-
 	// creat pagination var
 	filter = model.PaginationFilter{}
 
@@ -30,7 +26,7 @@ func (s TeacherRepository) FindAllTeachers(filter model.PaginationFilter) ([]*mo
 	var classTeacher []*entity.ClassroomTeacher
 
 	//get teachers of such class
-	query := db.
+	query := s.db.
 		Joins("join classroom ON classroom.id = classroom_teacher.classroom_id").
 		Joins("join teacher ON teacher.id = classroom_teacher.teacher_id").
 		Preload("Classroom").

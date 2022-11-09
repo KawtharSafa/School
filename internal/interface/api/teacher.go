@@ -33,6 +33,6 @@ func (s Teacher) GetTeachers(e echo.Context) error {
 		return e.JSON(http.StatusInternalServerError, nil)
 	}
 
-	return e.JSON(http.StatusOK, dto.ToTeacherArrayDTO(teachers))
+	return e.JSON(http.StatusOK, dto.ToClassroomTeacherArrayDTO(teachers))
 
 }

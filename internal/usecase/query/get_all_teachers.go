@@ -13,6 +13,6 @@ func ProvideGetAllTeachers(TeacherRepository repository.TeacherRepository) GetAl
 	return GetAllTeachers{TeacherRepository: TeacherRepository}
 }
 
-func (g GetAllTeachers) Handle(filter model.PaginationFilter) ([]*model.Teacher, error) {
+func (g GetAllTeachers) Handle(filter model.PaginationFilter) ([]*model.ClassroomTeacher, error) {
 	return g.TeacherRepository.FindAllTeachers(filter)
 }
